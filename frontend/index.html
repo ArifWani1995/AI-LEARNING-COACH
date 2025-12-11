@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI-powered personal learning coach with adaptive study paths">
+    <title>AI Learning Coach - Your Personal Study Assistant</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+</head>
+<body>
+    <div class="bg-animation"></div>
+    
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="logo">
+                <div class="logo-icon">🎓</div>
+                <span class="logo-text">LearnAI</span>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a class="nav-link active" data-page="dashboard" onclick="showPage('dashboard')">
+                        <span class="nav-icon">📊</span>
+                        <span class="nav-text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-page="topics" onclick="showPage('topics')">
+                        <span class="nav-icon">📚</span>
+                        <span class="nav-text">Topics</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-page="quiz" onclick="showPage('quiz')">
+                        <span class="nav-icon">📝</span>
+                        <span class="nav-text">Quiz</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-page="progress" onclick="showPage('progress')">
+                        <span class="nav-icon">📈</span>
+                        <span class="nav-text">Progress</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-page="schedule" onclick="showPage('schedule')">
+                        <span class="nav-icon">📅</span>
+                        <span class="nav-text">Schedule</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-page="settings" onclick="showPage('settings')">
+                        <span class="nav-icon">⚙️</span>
+                        <span class="nav-text">Settings</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Page -->
+            <section id="page-dashboard" class="page active">
+                <header class="header">
+                    <h1 class="page-title">Welcome back, <span id="user-name">Learner</span>! 👋</h1>
+                    <div class="header-actions">
+                        <button class="btn btn-secondary" onclick="downloadReport()">📄 Report</button>
+                        <button class="btn btn-primary" onclick="startDiagnostic()">🎯 Start Diagnostic</button>
+                    </div>
+                </header>
+
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card primary">
+                        <div class="stat-icon">📚</div>
+                        <div class="stat-value" id="topics-completed">0</div>
+                        <div class="stat-label">Topics Completed</div>
+                        <div class="stat-change up">↑ 12% from last week</div>
+                    </div>
+                    <div class="stat-card success">
+                        <div class="stat-icon">⏱️</div>
+                        <div class="stat-value" id="study-time">0h</div>
+                        <div class="stat-label">Study Time</div>
+                        <div class="stat-change up">↑ 8% from last week</div>
+                    </div>
+                    <div class="stat-card warning">
+                        <div class="stat-icon">🎯</div>
+                        <div class="stat-value" id="avg-score">0%</div>
+                        <div class="stat-label">Avg Quiz Score</div>
+                        <div class="stat-change up">↑ 5% improvement</div>
+                    </div>
+                    <div class="stat-card danger">
+                        <div class="stat-icon">🔥</div>
+                        <div class="stat-value" id="streak-days">0</div>
+                        <div class="stat-label">Day Streak</div>
+                        <div class="stat-change">Keep it up!</div>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px;">
+                    <!-- Learning Path -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">📍 Your Learning Path</h2>
+                            <button class="btn btn-secondary" onclick="showPage('topics')">View All</button>
+                        </div>
+                        <div id="learning-path-list">
+                            <div class="progress-container">
+                                <div class="progress-header">
+                                    <span class="progress-label">Python Basics</span>
+                                    <span class="progress-value">85%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="progress-container">
+                                <div class="progress-header">
+                                    <span class="progress-label">Variables & Data Types</span>
+                                    <span class="progress-value">60%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 60%"></div>
+                                </div>
+                            </div>
+                            <div class="progress-container">
+                                <div class="progress-header">
+                                    <span class="progress-label">Control Flow</span>
+                                    <span class="progress-value">30%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 30%"></div>
+                                </div>
+                            </div>
+                            <div class="progress-container">
+                                <div class="progress-header">
+                                    <span class="progress-label">Functions</span>
+                                    <span class="progress-value">0%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Today's Reviews -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">📅 Due for Review</h2>
+                        </div>
+                        <div id="review-list">
+                            <div style="padding: 16px; background: rgba(102, 126, 234, 0.1); border-radius: 12px; margin-bottom: 12px;">
+                                <div style="font-weight: 600; margin-bottom: 4px;">Python Basics</div>
+                                <div style="font-size: 13px; color: var(--text-secondary);">Last reviewed: 2 days ago</div>
+                            </div>
+                            <div style="padding: 16px; background: rgba(242, 201, 76, 0.1); border-radius: 12px; margin-bottom: 12px;">
+                                <div style="font-weight: 600; margin-bottom: 4px;">Variables</div>
+                                <div style="font-size: 13px; color: var(--text-secondary);">Last reviewed: 5 days ago</div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" style="width: 100%; margin-top: 16px;" onclick="startReviewSession()">
+                            Start Review Session
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Weakness Alert -->
+                <div class="card mt-3" style="border-left: 4px solid #f45c43;">
+                    <div class="card-header">
+                        <h2 class="card-title">⚠️ Areas Needing Attention</h2>
+                    </div>
+                    <div id="weakness-list" style="display: flex; gap: 16px; flex-wrap: wrap;">
+                        <div style="padding: 12px 20px; background: rgba(244, 92, 67, 0.1); border-radius: 20px;">
+                            Loops - 45% accuracy
+                        </div>
+                        <div style="padding: 12px 20px; background: rgba(244, 92, 67, 0.1); border-radius: 20px;">
+                            Functions - 52% accuracy
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Topics Page -->
+            <section id="page-topics" class="page hidden">
+                <header class="header">
+                    <h1 class="page-title">📚 Learning Topics</h1>
+                    <div class="header-actions">
+                        <select class="form-select" style="width: auto;" id="topic-filter">
+                            <option value="all">All Topics</option>
+                            <option value="programming">Programming</option>
+                            <option value="recommended">Recommended</option>
+                        </select>
+                    </div>
+                </header>
+
+                <div class="topics-grid" id="topics-grid">
+                    <!-- Topics will be loaded dynamically -->
+                </div>
+            </section>
+
+            <!-- Quiz Page -->
+            <section id="page-quiz" class="page hidden">
+                <header class="header">
+                    <h1 class="page-title">📝 Quiz Arena</h1>
+                </header>
+
+                <!-- Quiz Selection -->
+                <div id="quiz-selection">
+                    <div class="stats-grid">
+                        <div class="card" style="cursor: pointer;" onclick="startQuiz('diagnostic')">
+                            <div style="font-size: 48px; margin-bottom: 16px;">🎯</div>
+                            <h3 style="font-size: 20px; margin-bottom: 8px;">Diagnostic Test</h3>
+                            <p style="color: var(--text-secondary);">Assess your current knowledge level</p>
+                        </div>
+                        <div class="card" style="cursor: pointer;" onclick="startQuiz('practice')">
+                            <div style="font-size: 48px; margin-bottom: 16px;">📖</div>
+                            <h3 style="font-size: 20px; margin-bottom: 8px;">Practice Quiz</h3>
+                            <p style="color: var(--text-secondary);">Practice specific topics</p>
+                        </div>
+                        <div class="card" style="cursor: pointer;" onclick="startQuiz('review')">
+                            <div style="font-size: 48px; margin-bottom: 16px;">🔄</div>
+                            <h3 style="font-size: 20px; margin-bottom: 8px;">Review Session</h3>
+                            <p style="color: var(--text-secondary);">Spaced repetition review</p>
+                        </div>
+                        <div class="card" style="cursor: pointer;" onclick="startQuiz('weakness')">
+                            <div style="font-size: 48px; margin-bottom: 16px;">🔥</div>
+                            <h3 style="font-size: 20px; margin-bottom: 8px;">Focus on Weaknesses</h3>
+                            <p style="color: var(--text-secondary);">Target your weak areas</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quiz Container -->
+                <div id="quiz-container" class="hidden">
+                    <div class="quiz-container">
+                        <div class="quiz-progress">
+                            <div class="quiz-progress-bar">
+                                <div class="quiz-progress-fill" id="quiz-progress-fill" style="width: 0%"></div>
+                            </div>
+                            <span class="quiz-counter" id="quiz-counter">1 / 10</span>
+                        </div>
+
+                        <div class="question-card" id="question-card">
+                            <span class="question-number" id="question-difficulty">Medium</span>
+                            <h2 class="question-text" id="question-text">Loading question...</h2>
+                            <div class="options-list" id="options-list">
+                                <!-- Options will be loaded dynamically -->
+                            </div>
+                        </div>
+
+                        <div class="flex-between">
+                            <button class="btn btn-secondary" id="prev-btn" onclick="prevQuestion()" disabled>← Previous</button>
+                            <button class="btn btn-primary" id="next-btn" onclick="nextQuestion()">Next →</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quiz Results -->
+                <div id="quiz-results" class="hidden">
+                    <div class="card text-center" style="max-width: 600px; margin: 0 auto;">
+                        <div style="font-size: 72px; margin-bottom: 24px;" id="result-emoji">🎉</div>
+                        <h2 style="font-size: 32px; margin-bottom: 8px;">Quiz Complete!</h2>
+                        <p style="color: var(--text-secondary); margin-bottom: 32px;">Here's how you did</p>
+                        
+                        <div style="font-size: 64px; font-weight: 800; background: var(--primary-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 24px;">
+                            <span id="result-score">85</span>%
+                        </div>
+
+                        <div style="display: flex; justify-content: center; gap: 32px; margin-bottom: 32px;">
+                            <div>
+                                <div style="font-size: 24px; font-weight: 700; color: #38ef7d;" id="result-correct">8</div>
+                                <div style="color: var(--text-secondary);">Correct</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 24px; font-weight: 700; color: #f45c43;" id="result-incorrect">2</div>
+                                <div style="color: var(--text-secondary);">Incorrect</div>
+                            </div>
+                        </div>
+
+                        <div class="card" style="background: rgba(255,255,255,0.05); text-align: left; margin-bottom: 24px;">
+                            <h4 style="margin-bottom: 12px;">💡 Recommendations</h4>
+                            <ul id="result-recommendations" style="list-style: none; color: var(--text-secondary);">
+                                <li style="margin-bottom: 8px;">• Focus on loop concepts</li>
+                            </ul>
+                        </div>
+
+                        <div class="flex gap-2" style="justify-content: center;">
+                            <button class="btn btn-secondary" onclick="reviewAnswers()">Review Answers</button>
+                            <button class="btn btn-primary" onclick="retakeQuiz()">Try Again</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Progress Page -->
+            <section id="page-progress" class="page hidden">
+                <header class="header">
+                    <h1 class="page-title">📈 Your Progress</h1>
+                    <div class="header-actions">
+                        <select class="form-select" style="width: auto;">
+                            <option>Last 7 Days</option>
+                            <option>Last 30 Days</option>
+                            <option>All Time</option>
+                        </select>
+                    </div>
+                </header>
+
+                <div class="stats-grid">
+                    <div class="stat-card primary">
+                        <div class="stat-icon">🏆</div>
+                        <div class="stat-value" id="total-mastery">65%</div>
+                        <div class="stat-label">Overall Mastery</div>
+                    </div>
+                    <div class="stat-card success">
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-value" id="quizzes-taken">24</div>
+                        <div class="stat-label">Quizzes Completed</div>
+                    </div>
+                    <div class="stat-card warning">
+                        <div class="stat-icon">📊</div>
+                        <div class="stat-value" id="retention-rate">78%</div>
+                        <div class="stat-label">Retention Rate</div>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">📊 Topic Mastery</h2>
+                        </div>
+                        <div id="mastery-list">
+                            <!-- Will be populated dynamically -->
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">📝 Recent Quiz Results</h2>
+                        </div>
+                        <div id="quiz-history">
+                            <!-- Will be populated dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Schedule Page -->
+            <section id="page-schedule" class="page hidden">
+                <header class="header">
+                    <h1 class="page-title">📅 Study Schedule</h1>
+                    <div class="header-actions">
+                        <button class="btn btn-primary" onclick="createStudyPlan()">+ Create Plan</button>
+                    </div>
+                </header>
+
+                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px;">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">This Week's Schedule</h2>
+                        </div>
+                        <div class="calendar-grid" id="calendar-grid">
+                            <!-- Calendar will be generated -->
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">🎯 Active Study Plans</h2>
+                        </div>
+                        <div id="study-plans-list">
+                            <div style="padding: 16px; background: var(--bg-glass); border-radius: 12px; margin-bottom: 12px;">
+                                <div style="font-weight: 600; margin-bottom: 8px;">Master Python OOP</div>
+                                <div class="progress-bar" style="height: 6px;">
+                                    <div class="progress-fill" style="width: 45%"></div>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; margin-top: 8px; font-size: 12px; color: var(--text-secondary);">
+                                    <span>45% complete</span>
+                                    <span>7 days left</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings Page -->
+            <section id="page-settings" class="page hidden">
+                <header class="header">
+                    <h1 class="page-title">⚙️ Settings</h1>
+                </header>
+
+                <div class="card" style="max-width: 600px;">
+                    <h3 style="margin-bottom: 24px;">Profile Settings</h3>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Username</label>
+                        <input type="text" class="form-input" id="setting-username" placeholder="Enter your name">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-input" id="setting-email" placeholder="your@email.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Learning Goal</label>
+                        <textarea class="form-textarea" id="setting-goal" placeholder="What do you want to achieve?"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Current Level</label>
+                        <select class="form-select" id="setting-level">
+                            <option value="beginner">Beginner</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="advanced">Advanced</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Learning Speed</label>
+                        <select class="form-select" id="setting-speed">
+                            <option value="slow">Slow - Take my time</option>
+                            <option value="medium">Medium - Balanced</option>
+                            <option value="fast">Fast - Challenge me</option>
+                        </select>
+                    </div>
+
+                    <button class="btn btn-primary" onclick="saveSettings()">Save Changes</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal for Diagnostic -->
+    <div class="modal-overlay" id="diagnostic-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">🎯 Diagnostic Questions</h2>
+                <button class="modal-close" onclick="closeModal('diagnostic-modal')">✕</button>
+            </div>
+            <div id="diagnostic-content">
+                <!-- Diagnostic questions will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

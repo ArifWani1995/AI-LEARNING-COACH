@@ -1,0 +1,80 @@
+{
+  "topics": [
+    {
+      "id": "python_basics",
+      "name": "Python Basics",
+      "description": "Introduction to Python programming fundamentals",
+      "category": "Programming",
+      "difficulty_level": 1,
+      "prerequisites": [],
+      "content": "Python is a high-level, interpreted programming language known for its simplicity and readability.",
+      "questions": [
+        {"id": "q1", "question_type": "multiple_choice", "difficulty": "easy", "question_text": "What is Python?", "options": ["A programming language", "A snake", "A game", "A database"], "correct_answer": "A programming language", "concept_tags": ["basics"], "points": 1},
+        {"id": "q2", "question_type": "true_false", "difficulty": "easy", "question_text": "Python uses indentation to define code blocks.", "correct_answer": "true", "concept_tags": ["syntax"], "points": 1},
+        {"id": "q3", "question_type": "multiple_choice", "difficulty": "medium", "question_text": "Which keyword is used to define a function in Python?", "options": ["func", "def", "function", "define"], "correct_answer": "def", "concept_tags": ["functions"], "points": 2}
+      ]
+    },
+    {
+      "id": "python_variables",
+      "name": "Variables & Data Types",
+      "description": "Understanding variables and different data types in Python",
+      "category": "Programming",
+      "difficulty_level": 1,
+      "prerequisites": ["python_basics"],
+      "content": "Variables store data values. Python has various data types including int, float, str, bool, list, dict.",
+      "questions": [
+        {"id": "q4", "question_type": "multiple_choice", "difficulty": "easy", "question_text": "Which is a valid variable name?", "options": ["my_var", "2var", "my-var", "my var"], "correct_answer": "my_var", "concept_tags": ["variables"], "points": 1},
+        {"id": "q5", "question_type": "fill_blank", "difficulty": "medium", "question_text": "To check the type of a variable, use the _____ function.", "correct_answer": "type", "concept_tags": ["data_types"], "points": 2}
+      ]
+    },
+    {
+      "id": "python_control_flow",
+      "name": "Control Flow",
+      "description": "If statements, loops, and program flow control",
+      "category": "Programming",
+      "difficulty_level": 2,
+      "prerequisites": ["python_variables"],
+      "content": "Control flow determines the order in which code is executed. Includes if/elif/else, for loops, while loops.",
+      "questions": [
+        {"id": "q6", "question_type": "multiple_choice", "difficulty": "medium", "question_text": "Which loop is used when you know the number of iterations?", "options": ["while", "for", "do-while", "repeat"], "correct_answer": "for", "concept_tags": ["loops"], "points": 2},
+        {"id": "q7", "question_type": "true_false", "difficulty": "hard", "question_text": "A while loop can become infinite if the condition never becomes False.", "correct_answer": "true", "concept_tags": ["loops", "debugging"], "points": 3}
+      ]
+    },
+    {
+      "id": "python_functions",
+      "name": "Functions",
+      "description": "Creating and using functions in Python",
+      "category": "Programming",
+      "difficulty_level": 2,
+      "prerequisites": ["python_control_flow"],
+      "content": "Functions are reusable blocks of code. Defined using 'def' keyword, can have parameters and return values.",
+      "questions": [
+        {"id": "q8", "question_type": "multiple_choice", "difficulty": "medium", "question_text": "What keyword returns a value from a function?", "options": ["give", "return", "output", "send"], "correct_answer": "return", "concept_tags": ["functions", "return"], "points": 2}
+      ]
+    },
+    {
+      "id": "python_oop",
+      "name": "Object-Oriented Programming",
+      "description": "Classes, objects, inheritance, and OOP concepts",
+      "category": "Programming",
+      "difficulty_level": 3,
+      "prerequisites": ["python_functions"],
+      "content": "OOP is a programming paradigm based on objects. Key concepts: classes, objects, inheritance, encapsulation.",
+      "questions": [
+        {"id": "q9", "question_type": "multiple_choice", "difficulty": "hard", "question_text": "What is encapsulation?", "options": ["Hiding internal details", "Inheriting properties", "Creating objects", "Looping"], "correct_answer": "Hiding internal details", "concept_tags": ["oop", "encapsulation"], "points": 3}
+      ]
+    },
+    {
+      "id": "data_structures",
+      "name": "Data Structures",
+      "description": "Lists, dictionaries, sets, and tuples",
+      "category": "Programming",
+      "difficulty_level": 2,
+      "prerequisites": ["python_variables"],
+      "content": "Data structures organize and store data efficiently. Python provides lists, dicts, sets, and tuples.",
+      "questions": [
+        {"id": "q10", "question_type": "multiple_choice", "difficulty": "medium", "question_text": "Which data structure uses key-value pairs?", "options": ["list", "tuple", "dictionary", "set"], "correct_answer": "dictionary", "concept_tags": ["data_structures", "dictionary"], "points": 2}
+      ]
+    }
+  ]
+}
